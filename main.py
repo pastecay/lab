@@ -1,17 +1,25 @@
 #1
-def is_prime(n):
-    if n <= 1:
+def is_prime(number):
+    if number <= 1:
         return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
+    if number <= 3:
+        return True
+    if number % 2 == 0 or number % 3 == 0:
+        return False
+
+    i = 5
+    while i * i <= number:
+        if number % i == 0 or number % (i + 2) == 0:
             return False
+        i += 6
+
     return True
 
 num = int(input("Введите число: "))
 if is_prime(num):
-    print(num +"простое число")
+    print(f"{num} - простое число")
 else:
-    print(num + "не простое число")
+    print(f"{num} - составное число")
 #2
 def bubble_sort(arr):
     n = len(arr)
@@ -36,14 +44,19 @@ max_element = find_max(arr)
 print("Наибольший элемент в массиве:", max_element)
 #4
 def fibonacci(n):
-    if n <= 1:
-        return n
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
     else:
-        return fibonacci(n-1) + fibonacci(n-2)
+        return fibonacci(n - 1) + fibonacci(n - 2)
 
-num = int(input("Введите номер числа Фибоначчи: "))
-result = fibonacci(num)
-print("Число Фибоначчи под номером {num} равно {result}")
+n = int(input("Введите номер числа Фибоначчи: "))
+if n < 0:
+    print("Номер должен быть неотрицательным.")
+else:
+    result = fibonacci(n)
+    print(f"Число Фибоначчи под номером {n} равно {result}")
 #5
 def most_common_string(strings):
     counts = {}
